@@ -8,7 +8,7 @@ It combines creativity with AI to generate **unique names, slogans, taglines, lo
 ---
 
 ## 🌐 **Live Demo**
-🔗 [**View the Live App Here**](YOUR_DEPLOYMENT_LINK_HERE)
+🔗 [**View the Live App Here**](https://brandstorm-pro-ai-restaurant-concept-studio-2fpj7d9ek4eqrye4x4.streamlit.app/)
 
 *(⬆️ Once deployed, replace this link with your Streamlit Cloud or Vercel deployment URL)*
 
@@ -90,7 +90,7 @@ streamlit run main.py
 
 #### Vercel (with Streamlit SDK)
 
-### 🔗 Live App: [YOUR_DEPLOYMENT_LINK_HERE]
+### 🔗 Live App: [https://brandstorm-pro-ai-restaurant-concept-studio-2fpj7d9ek4eqrye4x4.streamlit.app/]
 
 ---
 
