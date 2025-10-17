@@ -48,7 +48,7 @@ def set_background(image_file):
     )
 
 # Apply custom background
-set_background("IMG_9773.jpg")
+set_background("IMG_9773.JPG")
 
 # -----------------------------------------------------
 # GLOBAL STYLE SETTINGS (text, buttons, layout)
@@ -366,3 +366,4 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
