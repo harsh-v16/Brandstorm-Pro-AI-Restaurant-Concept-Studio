@@ -16,6 +16,8 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 
+st.set_page_config(page_title="Brandstorm Pro", page_icon="🚀", layout="wide")
+
 # -----------------------------------------------------
 # Load environment variables from .env (for OpenAI key)
 # -----------------------------------------------------
@@ -182,7 +184,6 @@ section.main > div {
 # -----------------------------------------------------
 # STREAMLIT APP HEADER
 # -----------------------------------------------------
-st.set_page_config(page_title="Brandstorm Pro", page_icon="🚀", layout="wide")
 
 st.title("🚀 Brandstorm Pro — Restaurant Concept Studio")
 st.caption("Generate names, taglines, logo ideas, menus, design concepts and social copy — all in one click.")
@@ -366,4 +367,5 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
