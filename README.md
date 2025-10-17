@@ -95,7 +95,7 @@ streamlit run main.py
 ---
 
 ## 📸 Preview
-()
+(temp.png)
 
 ---
 
