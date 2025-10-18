@@ -2,11 +2,11 @@
 streamlit==1.39.0
 rich==13.7.0
 
-# --- LangChain Stack (compatible set) ---
+# --- LangChain Stack (compatible + working) ---
 langchain==0.3.4
 langchain-core==0.3.12
 langchain-openai==0.2.3
-openai==1.35.13
+openai==1.52.0
 
 # --- Utils ---
 python-dotenv==1.0.1
