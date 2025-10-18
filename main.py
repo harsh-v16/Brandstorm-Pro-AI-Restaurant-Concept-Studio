@@ -12,7 +12,7 @@ import os
 import base64
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_openai import ChatOpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 
@@ -405,6 +405,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
