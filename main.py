@@ -255,16 +255,22 @@ def generate_concept(cuisine, temperature):
     llm = None
     last_error = None
     try:
-        # Try the modern common signature first
-        llm = ChatOpenAI(model=DEFAULT_MODEL, temperature=temperature)
-    except Exception as e1:
-        last_error = e1
-        try:
-            # Fall back to the alternate parameter name if the above fails
-            llm = ChatOpenAI(model_name=DEFAULT_MODEL, temperature=temperature)
-        except Exception as e2:
-            # both failed — capture last error and show friendly message
-            last_error = e2
+    llm = ChatOpenAI(
+        model=DEFAULT_MODEL,
+        temperature=temperature,
+        api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
+    )
+except Exception as e1:
+    last_error = e1
+    try:
+        llm = ChatOpenAI(
+            model_name=DEFAULT_MODEL,
+            temperature=temperature,
+            api_key=os.getenv("OPENAI_API_KEY")  # ✅ same fix here
+        )
+    except Exception as e2:
+        last_error = e2
+
 
     if llm is None:
         # Friendly error message in the app rather than crashing with raw trace
@@ -405,6 +411,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
