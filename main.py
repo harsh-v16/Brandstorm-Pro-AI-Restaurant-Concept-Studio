@@ -245,7 +245,7 @@ def generate_concept(cuisine, model_selected, temperature):
     It produces a name, slogan, taglines, logo idea, interior style,
     menu items, and social media copy.
     """
-    llm = ChatOpenAI(model="gpt-4", temperature=temperature)
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=temperature)
 
     # Define multiple LLM chains for modular outputs
     name_prompt = ChatPromptTemplate.from_template("Suggest one creative and short restaurant name for {cuisine}.")
@@ -367,6 +367,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
