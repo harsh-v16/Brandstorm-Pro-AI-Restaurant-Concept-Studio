@@ -280,7 +280,7 @@ except Exception as e1:
         st.write("Debug info (hidden error):")
         st.write(repr(last_error))
         # Stop further processing by returning an empty result structure
-        return {
+    return {
             "restaurant_name": "Error initializing model",
             "slogan": "See logs for details",
             "taglines": "",
@@ -412,6 +412,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
