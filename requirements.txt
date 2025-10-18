@@ -1,11 +1,7 @@
-# Core Web Framework
 streamlit==1.39.0
 rich==13.9.4
-
-# OpenAI + LangChain Integration
 langchain==0.2.14
 langchain-openai==0.1.6
 openai==1.37.1
-
-# Environment & Utilities
 python-dotenv==1.0.1
+pip==24.0
