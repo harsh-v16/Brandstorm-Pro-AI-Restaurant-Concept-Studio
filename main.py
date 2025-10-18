@@ -254,32 +254,29 @@ def generate_concept(cuisine, temperature):
     # Attempt to construct the LLM in a way that handles either arg name
     llm = None
     last_error = None
-try:
-    llm = ChatOpenAI(
-        model=DEFAULT_MODEL,
-        temperature=temperature,
-        api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
-    )
-except Exception as e1:
-    last_error = e1
+
     try:
         llm = ChatOpenAI(
-            model_name=DEFAULT_MODEL,
+            model=DEFAULT_MODEL,
             temperature=temperature,
-            api_key=os.getenv("OPENAI_API_KEY")  # ✅ same fix here
+            api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
         )
-    except Exception as e2:
-        last_error = e2
-
-
+    except Exception as e1:
+        last_error = e1
+        try:
+            llm = ChatOpenAI(
+                model_name=DEFAULT_MODEL,
+                temperature=temperature,
+                api_key=os.getenv("OPENAI_API_KEY")  # ✅ same fix here
+            )
+        except Exception as e2:
+            last_error = e2
 
     if llm is None:
         # Friendly error message in the app rather than crashing with raw trace
         st.error("AI model initialization failed. Please check package compatibility or logs.")
-        # Log the low-level error to the console for debugging (visible in Streamlit logs)
         st.write("Debug info (hidden error):")
         st.write(repr(last_error))
-        # Stop further processing by returning an empty result structure
         return {
             "restaurant_name": "Error initializing model",
             "slogan": "See logs for details",
@@ -289,6 +286,7 @@ except Exception as e1:
             "menu_items": "",
             "social_copy": ""
         }
+
 
     # --- Define multiple LLM chains for modular outputs ---
     name_prompt = ChatPromptTemplate.from_template("Suggest one creative and short restaurant name for {cuisine}.")
@@ -412,6 +410,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
