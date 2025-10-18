@@ -1,5 +1,5 @@
 # Core Web Framework
-streamlit==1.38.0
+streamlit==1.39.0
 
 # OpenAI + LangChain Integration
 langchain==0.2.15
@@ -8,9 +8,3 @@ openai==1.40.2
 
 # Environment & Utilities
 python-dotenv==1.0.1
-
-# For Base64 and Encoding (comes built-in with Python)
-# (No need to install base64 separately)
-
-# Optional - If you plan to use HuggingFace or other connectors in future
-# langchain-community==0.2.8
