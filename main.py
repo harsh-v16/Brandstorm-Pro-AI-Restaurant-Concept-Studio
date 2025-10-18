@@ -237,18 +237,53 @@ want_interior = st.checkbox("Interior Design Suggestion", value=True)
 want_social = st.checkbox("Social Media Copy (IG bio + 1 post)", value=True)
 
 # -----------------------------------------------------
-# GPT-4 CONCEPT GENERATION FUNCTION
+# GPT-4 CONCEPT GENERATION FUNCTION (robust init)
 # -----------------------------------------------------
 def generate_concept(cuisine, temperature):
     """
-    Uses GPT-4 (via LangChain) to generate a complete restaurant concept.
-    It produces a name, slogan, taglines, logo idea, interior style,
-    menu items, and social media copy.
+    Uses LangChain's ChatOpenAI to generate a full restaurant concept.
+    This function attempts both common constructor parameter names
+    (model and model_name) to be compatible across LangChain versions.
+    Returns a dict of outputs (same structure as before) or raises a friendly error.
     """
-    llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=temperature)
+    from pydantic import ValidationError as PydanticValidationError
 
+    # prefer a concrete model name that generally exists; change if you have a different one
+    DEFAULT_MODEL = "gpt-4o-mini"
 
-    # Define multiple LLM chains for modular outputs
+    # Attempt to construct the LLM in a way that handles either arg name
+    llm = None
+    last_error = None
+    try:
+        # Try the modern common signature first
+        llm = ChatOpenAI(model=DEFAULT_MODEL, temperature=temperature)
+    except Exception as e1:
+        last_error = e1
+        try:
+            # Fall back to the alternate parameter name if the above fails
+            llm = ChatOpenAI(model_name=DEFAULT_MODEL, temperature=temperature)
+        except Exception as e2:
+            # both failed — capture last error and show friendly message
+            last_error = e2
+
+    if llm is None:
+        # Friendly error message in the app rather than crashing with raw trace
+        st.error("AI model initialization failed. Please check package compatibility or logs.")
+        # Log the low-level error to the console for debugging (visible in Streamlit logs)
+        st.write("Debug info (hidden error):")
+        st.write(repr(last_error))
+        # Stop further processing by returning an empty result structure
+        return {
+            "restaurant_name": "Error initializing model",
+            "slogan": "See logs for details",
+            "taglines": "",
+            "logo_idea": "",
+            "interior_design": "",
+            "menu_items": "",
+            "social_copy": ""
+        }
+
+    # --- Define multiple LLM chains for modular outputs ---
     name_prompt = ChatPromptTemplate.from_template("Suggest one creative and short restaurant name for {cuisine}.")
     name_chain = LLMChain(llm=llm, prompt=name_prompt, output_key="restaurant_name")
 
@@ -278,9 +313,10 @@ def generate_concept(cuisine, temperature):
         verbose=False,
     )
 
-    # Execute the chain
+    # Execute the chain and return the response
     response = overall_chain.invoke({"cuisine": cuisine})
     return response
+
 
 # -----------------------------------------------------
 # GENERATE BUTTON WITH ANIMATED GLOW
@@ -369,6 +405,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
