@@ -1,7 +1,16 @@
+# --- Core Framework ---
 streamlit==1.39.0
-rich==13.9.4
+rich<14.0,>=13.0
+
+# --- LangChain + OpenAI ---
 langchain==0.2.14
 langchain-openai==0.1.6
 openai==1.37.1
+
+# --- Utils ---
 python-dotenv==1.0.1
+
+# --- Prevent auto-upgrade conflicts ---
 pip==24.0
+setuptools<70
+wheel
