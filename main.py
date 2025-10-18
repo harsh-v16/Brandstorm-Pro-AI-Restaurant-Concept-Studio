@@ -255,11 +255,11 @@ def generate_concept(cuisine, temperature):
     llm = None
     last_error = None
     try:
-    llm = ChatOpenAI(
-        model=DEFAULT_MODEL,
-        temperature=temperature,
-        api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
-    )
+        llm = ChatOpenAI(
+            model=DEFAULT_MODEL,
+            temperature=temperature,
+            api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
+        )
 except Exception as e1:
     last_error = e1
     try:
@@ -411,6 +411,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
