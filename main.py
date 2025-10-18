@@ -239,13 +239,13 @@ want_social = st.checkbox("Social Media Copy (IG bio + 1 post)", value=True)
 # -----------------------------------------------------
 # GPT-4 CONCEPT GENERATION FUNCTION
 # -----------------------------------------------------
-def generate_concept(cuisine, model_selected, temperature):
+def generate_concept(cuisine, temperature):
     """
     Uses GPT-4 (via LangChain) to generate a complete restaurant concept.
     It produces a name, slogan, taglines, logo idea, interior style,
     menu items, and social media copy.
     """
-    llm = ChatOpenAI(model=model_selected, temperature=temperature)
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=temperature)
 
 
     # Define multiple LLM chains for modular outputs
@@ -328,7 +328,8 @@ if not cuisine:
 elif generate:
     with st.spinner("Brainstorming your restaurant concept... 🍳"):
         # Run GPT-4 chain and display structured outputs
-        result = generate_concept(cuisine=cuisine, model_selected="gpt-4", temperature=temperature)
+        result = generate_concept(cuisine=cuisine, temperature=temperature)
+
 
         st.divider()
         st.subheader(f"AI Results for *{cuisine.title()}*")
@@ -368,6 +369,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
