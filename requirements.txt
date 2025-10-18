@@ -2,9 +2,10 @@
 streamlit==1.39.0
 
 # OpenAI + LangChain Integration
-langchain==0.2.15
-langchain-openai==0.1.7
-openai==1.40.2
+langchain==0.2.14
+langchain-openai==0.1.6
+openai==1.37.1
+
 
 # Environment & Utilities
 python-dotenv==1.0.1
@@ -12,3 +13,4 @@ python-dotenv==1.0.1
 # Compatibility fix for validation errors
 pydantic==2.9.2
 pydantic-core==2.23.4
+
