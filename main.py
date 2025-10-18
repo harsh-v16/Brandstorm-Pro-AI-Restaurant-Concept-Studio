@@ -254,12 +254,12 @@ def generate_concept(cuisine, temperature):
     # Attempt to construct the LLM in a way that handles either arg name
     llm = None
     last_error = None
-    try:
-        llm = ChatOpenAI(
-            model=DEFAULT_MODEL,
-            temperature=temperature,
-            api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
-        )
+try:
+    llm = ChatOpenAI(
+        model=DEFAULT_MODEL,
+        temperature=temperature,
+        api_key=os.getenv("OPENAI_API_KEY")  # ✅ explicitly set your key
+    )
 except Exception as e1:
     last_error = e1
     try:
@@ -270,6 +270,7 @@ except Exception as e1:
         )
     except Exception as e2:
         last_error = e2
+
 
 
     if llm is None:
@@ -411,6 +412,7 @@ elif generate:
 # =====================================================
 # End of Script
 # =====================================================
+
 
 
 
