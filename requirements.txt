@@ -2,9 +2,10 @@
 streamlit==1.39.0
 rich==13.7.0
 
-# --- LangChain Stack (matching versions) ---
+# --- LangChain Stack (compatible set) ---
 langchain==0.3.4
 langchain-core==0.3.12
+langchain-openai==0.2.3
 openai==1.35.13
 
 # --- Utils ---
